@@ -23,6 +23,9 @@
 
                         <config method="GetParam" procerdure="SP_GET_CBA_PARAM" />
                         <config method="GetBlackList" procerdure="SP_GET_CBA_BLACKLIST" />
+                        <config method="GetDNC" procerdure="SP_GET_CBA_DNC" />
+                        <config method="GetTimeZone" procerdure="SP_GET_CBA_TIMEZONE" />
+                        <config method="GetDNIS" procerdure="SP_GET_CBA_BLACKLIST" />
 
                     </configs>
                 </dataSource>

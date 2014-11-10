@@ -5,7 +5,9 @@ import com.ais.config.model.Env;
 import com.ais.config.model.Environments;
 import com.ais.service.model.DBObject;
 import com.ais.service.model.config.CBA_BLACKLIST;
+import com.ais.service.model.config.CBA_DNC;
 import com.ais.service.model.config.CBA_PARAM;
+import com.ais.service.model.config.CBA_TIMEZONE;
 import com.ais.util.AISUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,5 +91,18 @@ public class AISService {
         DBObject<CBA_BLACKLIST> prepaiddbObject = configService.GetBlackList(_sessionId, phone);
         return prepaiddbObject;
     }
+
+
+    public static DBObject<CBA_DNC> GetDNC(String _sessionId, String phone) {
+        DBObject<CBA_DNC> prepaiddbObject = configService.GetDNC(_sessionId, phone);
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_TIMEZONE> GetTimeZone(String _sessionId, String timezoneId) {
+        DBObject<CBA_TIMEZONE> prepaiddbObject = configService.GetTimeZone(_sessionId, timezoneId);
+        return prepaiddbObject;
+    }
+
+
 
 }

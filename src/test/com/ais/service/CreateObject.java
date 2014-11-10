@@ -2,7 +2,6 @@ package com.ais.service;
 
 import com.ais.util.AISUtils;
 import org.apache.commons.lang.StringUtils;
-import sun.nio.cs.StandardCharsets;
 
 import java.io.*;
 
@@ -24,7 +23,7 @@ public class CreateObject {
 
 
     public static void main(String[] args) throws Exception {
-        CreateObject ob = new CreateObject("CBA_PARAM", false);
+        CreateObject ob = new CreateObject("CBA_TIMEZONE", false);
         BufferedReader r = null;
         OutputStreamWriter out = null;
         try {
@@ -84,6 +83,8 @@ public class CreateObject {
                 bf.append(" String ");
             } else if (line.indexOf("NUMBER") > 0) {
                 bf.append(" Long ");
+            } else if (line.indexOf("DATE") > 0) {
+                bf.append(" Date ");
             }
             int fi = line.indexOf("\""), li = line.lastIndexOf("\"");
             if (fi >= 0 && li > 0 && fi < li) {
