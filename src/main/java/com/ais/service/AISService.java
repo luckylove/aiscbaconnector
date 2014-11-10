@@ -4,6 +4,7 @@ import com.ais.config.ServiceConfig;
 import com.ais.config.model.Env;
 import com.ais.config.model.Environments;
 import com.ais.service.model.DBObject;
+import com.ais.service.model.config.CBA_BLACKLIST;
 import com.ais.service.model.config.CBA_PARAM;
 import com.ais.util.AISUtils;
 import org.slf4j.Logger;
@@ -80,6 +81,12 @@ public class AISService {
 
     public static DBObject<CBA_PARAM> GetParam(String _sessionId, String paramName) {
         DBObject<CBA_PARAM> prepaiddbObject = configService.GetParam(_sessionId, paramName);
+        return prepaiddbObject;
+    }
+
+
+    public static DBObject<CBA_BLACKLIST> GetBlackList(String _sessionId, String phone) {
+        DBObject<CBA_BLACKLIST> prepaiddbObject = configService.GetBlackList(_sessionId, phone);
         return prepaiddbObject;
     }
 

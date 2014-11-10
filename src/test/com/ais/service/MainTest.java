@@ -13,7 +13,8 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
         //AISService.initService();
-        AISService.GetParam("cc", "EARLIEST_CALL_TIME");
+        //AISService.GetParam("cc", "EARLIEST_CALL_TIME");
+        AISService.GetBlackList("cc", "222222");
 
     }
 
