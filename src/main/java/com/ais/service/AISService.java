@@ -119,7 +119,7 @@ public class AISService {
     }
 
     public static DBObject<CBA_INBOUND_CONF> GetInboundConfByInboundVDN(String _sessionId, String inboundVdn) {
-        DBObject<CBA_INBOUND_CONF> prepaiddbObject = new DBObject<CBA_INBOUND_CONF>();
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = configService.GetInboundConfByInboundVDN(_sessionId, inboundVdn);
         return prepaiddbObject;
     }
 

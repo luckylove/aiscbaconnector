@@ -398,4 +398,65 @@ public class ConfigService {
     }
 
 
+    public DBObject<CBA_INBOUND_CONF> GetInboundConfByInboundVDN(final String _sessionId, final String inboundVdn) {
+        String configName = "GetInboundConfByInboundVDN";
+        final Config cf = config.lookup(configName);
+        DBObject<CBA_INBOUND_CONF> rs = new DBObject<CBA_INBOUND_CONF>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("inboundVdn", inboundVdn);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_INBOUND_VDN"
+                        ).declareParameters(
+                                new SqlParameter("IN_INBOUND_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IDX", Types.NUMERIC),
+                                new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_NETWORK_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SUBNET_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MOB_SEGMENT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ARPU_RANGE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_XFER_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_XFER_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_INBOUND_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ENABLE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_START_TIME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_END_TIME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MAX_ACTIVE_REQ", Types.NUMERIC),
+                                new SqlOutParameter("OUT_PRIORITY", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MAX_CONCURRENT_CALL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_DUPLICATE_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_INBOUND_VDN", inboundVdn);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
+                    CBA_INBOUND_CONF ob = new CBA_INBOUND_CONF();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+
 }
