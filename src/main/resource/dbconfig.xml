@@ -24,7 +24,7 @@
                         <config method="GetBlackList" procerdure="SP_GET_CBA_BLACKLIST" />
                         <config method="GetDNC" procerdure="SP_GET_CBA_DNC" />
                         <config method="GetTimeZone" procerdure="SP_GET_CBA_TIMEZONE" />
-                        <config method="GetDNIS" procerdure="SP_GET_CBA_BLACKLIST" />
+                        <config method="GetDNIS" procerdure="SP_GET_CBA_DNIS" />
                         <config method="GetHoliday" procerdure="SP_GET_CBA_HOLIDAY" />
                         <config method="GetInboundConf" procerdure="SP_GET_CBA_INBOUND_CONF" />
                         <config method="GetInboundConfByInboundVDN" procerdure="SP_GET_CBA_INBOUND_VDN" />

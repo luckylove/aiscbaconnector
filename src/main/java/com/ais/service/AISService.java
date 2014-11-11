@@ -103,18 +103,18 @@ public class AISService {
     }
 
     public static DBObject<CBA_DNIS> GetDNIS(String _sessionId, String dnis) {
-        DBObject<CBA_DNIS> prepaiddbObject = new DBObject<CBA_DNIS>();
+        DBObject<CBA_DNIS> prepaiddbObject =  configService.GetDNIS(_sessionId, dnis);
         return prepaiddbObject;
     }
 
     public static DBObject<CBA_HOLIDAY> GetHoliday(String _sessionId, String holidayId) {
-        DBObject<CBA_HOLIDAY> prepaiddbObject = new DBObject<CBA_HOLIDAY>();
+        DBObject<CBA_HOLIDAY> prepaiddbObject = configService.GetHoliday(_sessionId, holidayId);
         return prepaiddbObject;
     }
 
     public static DBObject<CBA_INBOUND_CONF> GetInboundConf(String _sessionId, String langId, String networkType, String subnetType,
                                                             String mobileSegment, String arpu, String xferVdn) {
-        DBObject<CBA_INBOUND_CONF> prepaiddbObject = new DBObject<CBA_INBOUND_CONF>();
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = configService.GetInboundConf(_sessionId, langId, networkType, subnetType, mobileSegment, arpu, xferVdn);
         return prepaiddbObject;
     }
 
