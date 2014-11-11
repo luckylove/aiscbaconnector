@@ -20,13 +20,19 @@
                     <validationQuery>SELECT 1 from dual</validationQuery>
                     <!-- List config name will use this db-->
                     <configs>
-
                         <config method="GetParam" procerdure="SP_GET_CBA_PARAM" />
                         <config method="GetBlackList" procerdure="SP_GET_CBA_BLACKLIST" />
                         <config method="GetDNC" procerdure="SP_GET_CBA_DNC" />
                         <config method="GetTimeZone" procerdure="SP_GET_CBA_TIMEZONE" />
                         <config method="GetDNIS" procerdure="SP_GET_CBA_BLACKLIST" />
-
+                        <config method="GetHoliday" procerdure="SP_GET_CBA_HOLIDAY" />
+                        <config method="GetInboundConf" procerdure="SP_GET_CBA_INBOUND_CONF" />
+                        <config method="GetInboundConfByInboundVDN" procerdure="SP_GET_CBA_INBOUND_VDN" />
+                        <config method="GetInboundConfByServiceID" procerdure="SP_GET_CBA_INBOUND_SERVICE" />
+                        <config method="GetService" procerdure="SP_GET_CBA_SERVICE" />
+                        <config method="GetMenuSet" procerdure="SP_GET_CBA_MENU_SET" />
+                        <config method="GetMenuDigits" procerdure="SP_GET_CBA_MENU_DIGIT" />
+                        <config method="GetPriority" procerdure="SP_GET_CBA_PRIORITY" />
                     </configs>
                 </dataSource>
 
@@ -54,8 +60,14 @@
                     <validationQuery>SELECT 1 from dual</validationQuery>
 
                     <configs>
-                        <config method="InsertPackageLog" procerdure="SP_INS_AIS_PACKAGE_LOG_EP2" tableName="AIS_PACKAGE_LOG"/>
-
+                        <config method="AddCallbackRequest" procerdure="SP_INS_CBA_REQUEST"/>
+                        <config method="UpdateCallbackRequest" procerdure="SP_UPD_CBA_REQUEST" />
+                        <config method="GetCallbackRequest" procerdure="SP_GET_CBA_REQUEST" />
+                        <config method="CheckDuplicateCallbackRequest" procerdure="SP_CHK_DUP_CBA_REQUEST" />
+                        <config method="CheckMaxConcurrentCallbackRequest" procerdure="SP_CHK_MAX_CBA_REQUEST" />
+                        <config method="AddAct" procerdure="SP_INS_CBA_ACT" />
+                        <config method="AddActDetail" procerdure="SP_INS_CBA_ACT_DETAIL" />
+                        <config method="GetPriority" procerdure="SP_GET_CBA_PRIORITY" />
                     </configs>
                 </dataSource>
 

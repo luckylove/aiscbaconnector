@@ -23,7 +23,7 @@ public class CreateObject {
 
 
     public static void main(String[] args) throws Exception {
-        CreateObject ob = new CreateObject("CBA_DNIS", false);
+        CreateObject ob = new CreateObject("CBA_ACT_DETAIL", false);
         BufferedReader r = null;
         OutputStreamWriter out = null;
         try {
