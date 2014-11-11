@@ -4,10 +4,7 @@ import com.ais.config.ServiceConfig;
 import com.ais.config.model.Env;
 import com.ais.config.model.Environments;
 import com.ais.service.model.DBObject;
-import com.ais.service.model.config.CBA_BLACKLIST;
-import com.ais.service.model.config.CBA_DNC;
-import com.ais.service.model.config.CBA_PARAM;
-import com.ais.service.model.config.CBA_TIMEZONE;
+import com.ais.service.model.config.*;
 import com.ais.util.AISUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +13,8 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: son.nguyen
@@ -103,6 +102,91 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject<CBA_DNIS> GetDNIS(String _sessionId, String dnis) {
+        DBObject<CBA_DNIS> prepaiddbObject = new DBObject<CBA_DNIS>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_HOLIDAY> GetHoliday(String _sessionId, String holidayId) {
+        DBObject<CBA_HOLIDAY> prepaiddbObject = new DBObject<CBA_HOLIDAY>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_INBOUND_CONF> GetInboundConf(String _sessionId, String langId, String networkType, String subnetType,
+                                                            String mobileSegment, String arpu, String xferVdn) {
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = new DBObject<CBA_INBOUND_CONF>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_INBOUND_CONF> GetInboundConfByInboundVDN(String _sessionId, String inboundVdn) {
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = new DBObject<CBA_INBOUND_CONF>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_INBOUND_CONF> GetInboundConfByServiceID(String _sessionId, String serviceId) {
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = new DBObject<CBA_INBOUND_CONF>();
+        return prepaiddbObject;
+    }
+
+
+    public static DBObject<CBA_SERVICE> GetService(String _sessionId, String serviceId) {
+        DBObject<CBA_SERVICE> prepaiddbObject = new DBObject<CBA_SERVICE>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_MENU_SET> GetMenuSet(String _sessionId, String menuSetId) {
+        DBObject<CBA_MENU_SET> prepaiddbObject = new DBObject<CBA_MENU_SET>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_MENU_DIGIT> GetMenuDigits(String _sessionId, String menuSetId) {
+        DBObject<CBA_MENU_DIGIT> prepaiddbObject = new DBObject<CBA_MENU_DIGIT>();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<CBA_PRIORITY> GetPriority(String _sessionId, Long idx) {
+        DBObject<CBA_PRIORITY> prepaiddbObject = new DBObject<CBA_PRIORITY>();
+        return prepaiddbObject;
+    }
+
+
+    public static DBObject AddCallbackRequest(String _sessionId, CBA_REQUEST params) {
+        DBObject prepaiddbObject = new DBObject();
+        return prepaiddbObject;
+    }
+
+    public static DBObject UpdateCallbackRequest(String _sessionId, CBA_REQUEST params) {
+        DBObject prepaiddbObject = new DBObject();
+        return prepaiddbObject;
+    }
+
+    public static DBObject<List<CBA_REQUEST>> GetCallbackRequest(String _sessionId, Integer size) {
+        DBObject prepaiddbObject = new DBObject();
+        prepaiddbObject.setResult(new ArrayList<CBA_REQUEST>());
+        return prepaiddbObject;
+    }
+
+    public static DBObject<Boolean> CheckDuplicateCallbackRequest(String _sessionId, String mobileNumber, String serviceId, Integer interval) {
+        DBObject<Boolean> prepaiddbObject = new DBObject<Boolean>();
+        prepaiddbObject.setResult(true);
+        return prepaiddbObject;
+    }
+
+    public static DBObject<Boolean> CheckMaxConcurrentCallbackRequest(String _sessionId, String serviceId, Integer maxConcurrentCall) {
+        DBObject prepaiddbObject = new DBObject();
+        prepaiddbObject.setResult(true);
+        return prepaiddbObject;
+    }
+
+    public static DBObject AddAct(String _sessionId, CBA_ACT params) {
+        DBObject prepaiddbObject = new DBObject();
+        return prepaiddbObject;
+    }
+
+    public static DBObject AddActDetail(String _sessionId, CBA_ACT_DETAIL params) {
+        DBObject prepaiddbObject = new DBObject();
+        return prepaiddbObject;
+    }
 
 
 }

@@ -16,7 +16,7 @@ public class MainTest {
         //AISService.GetParam("cc", "EARLIEST_CALL_TIME");
        // AISService.GetBlackList("cc", "222222");
        // AISService.GetDNC("cc", "222222");
-        AISService.GetTimeZone("cc", "zzz");
+        AISService.UpdateCallbackRequest("cc", null);
 
     }
 
