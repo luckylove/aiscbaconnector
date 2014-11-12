@@ -124,18 +124,18 @@ public class AISService {
     }
 
     public static DBObject<CBA_INBOUND_CONF> GetInboundConfByServiceID(String _sessionId, String serviceId) {
-        DBObject<CBA_INBOUND_CONF> prepaiddbObject = new DBObject<CBA_INBOUND_CONF>();
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = configService.GetInboundConfByServiceID(_sessionId, serviceId);
         return prepaiddbObject;
     }
 
 
     public static DBObject<CBA_SERVICE> GetService(String _sessionId, String serviceId) {
-        DBObject<CBA_SERVICE> prepaiddbObject = new DBObject<CBA_SERVICE>();
+        DBObject<CBA_SERVICE> prepaiddbObject = configService.GetService(_sessionId, serviceId);
         return prepaiddbObject;
     }
 
     public static DBObject<CBA_MENU_SET> GetMenuSet(String _sessionId, String menuSetId) {
-        DBObject<CBA_MENU_SET> prepaiddbObject = new DBObject<CBA_MENU_SET>();
+        DBObject<CBA_MENU_SET> prepaiddbObject = configService.GetMenuSet(_sessionId, menuSetId);
         return prepaiddbObject;
     }
 

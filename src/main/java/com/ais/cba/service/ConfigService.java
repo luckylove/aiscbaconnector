@@ -458,5 +458,166 @@ public class ConfigService {
         }
     }
 
+    public DBObject<CBA_INBOUND_CONF> GetInboundConfByServiceID(final String _sessionId, final String serviceId) {
+        String configName = "GetInboundConfByServiceID";
+        final Config cf = config.lookup(configName);
+        DBObject<CBA_INBOUND_CONF> rs = new DBObject<CBA_INBOUND_CONF>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("serviceId", serviceId);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_SERVICE_ID"
+                        ).declareParameters(
+                                new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IDX", Types.NUMERIC),
+                                new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_NETWORK_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SUBNET_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MOB_SEGMENT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ARPU_RANGE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_XFER_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_XFER_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_INBOUND_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ENABLE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_START_TIME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_END_TIME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MAX_ACTIVE_REQ", Types.NUMERIC),
+                                new SqlOutParameter("OUT_PRIORITY", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MAX_CONCURRENT_CALL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_DUPLICATE_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_SERVICE_ID", serviceId);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
+                    CBA_INBOUND_CONF ob = new CBA_INBOUND_CONF();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+    public DBObject<CBA_SERVICE> GetService(final String _sessionId, final String serviceId) {
+        String configName = "GetService";
+        final Config cf = config.lookup(configName);
+        DBObject<CBA_SERVICE> rs = new DBObject<CBA_SERVICE>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("serviceId", serviceId);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_SERVICE_ID"
+                        ).declareParameters(
+                                new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SERVICE_NAME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_DESCRIPTION", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SLA", Types.NUMERIC),
+                                new SqlOutParameter("OUT_MENU_SET_ID", Types.NUMERIC),
+                                new SqlOutParameter("OUT_MAX_TRY", Types.NUMERIC),
+                                new SqlOutParameter("OUT_TRY_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_SMS_ID_SUCC", Types.VARCHAR),
+                                new SqlOutParameter("OUT_GENACT_ID_SUCC", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SMS_ID_FAIL", Types.VARCHAR),
+                                new SqlOutParameter("OUT_GENACT_ID_FAIL", Types.VARCHAR),
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_SERVICE_ID", serviceId);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
+                    CBA_SERVICE ob = new CBA_SERVICE();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+    public DBObject<CBA_MENU_SET> GetMenuSet(final String _sessionId, final String menuSetId) {
+        String configName = "GetMenuSet";
+        final Config cf = config.lookup(configName);
+        DBObject<CBA_MENU_SET> rs = new DBObject<CBA_MENU_SET>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("menuSetId", menuSetId);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_MENU_SET_ID"
+                        ).declareParameters(
+                                new SqlParameter("IN_MENU_SET_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MENU_SET_ID ", Types.NUMERIC),
+                                new SqlOutParameter("OUT_MENU_SET_NAME ", Types.VARCHAR),
+                                new SqlOutParameter("OUT_LANG_ID ", Types.VARCHAR),
+                                new SqlOutParameter("OUT_DESCRIPTION ", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PHR_MENU_SET ", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MENU_SET_MENUID ", Types.VARCHAR),
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_MENU_SET_ID", menuSetId);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
+                    CBA_MENU_SET ob = new CBA_MENU_SET();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
 
 }
