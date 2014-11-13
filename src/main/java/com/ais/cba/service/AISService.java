@@ -139,13 +139,13 @@ public class AISService {
         return prepaiddbObject;
     }
 
-    public static DBObject<CBA_MENU_DIGIT> GetMenuDigits(String _sessionId, String menuSetId) {
-        DBObject<CBA_MENU_DIGIT> prepaiddbObject = new DBObject<CBA_MENU_DIGIT>();
+    public static DBObject<List<CBA_MENU_DIGIT>> GetMenuDigits(String _sessionId, String menuSetId) {
+        DBObject<List<CBA_MENU_DIGIT>> prepaiddbObject =  configService.GetMenuDigits(_sessionId, menuSetId);
         return prepaiddbObject;
     }
 
     public static DBObject<CBA_PRIORITY> GetPriority(String _sessionId, Long idx) {
-        DBObject<CBA_PRIORITY> prepaiddbObject = new DBObject<CBA_PRIORITY>();
+        DBObject<CBA_PRIORITY> prepaiddbObject = configService.GetPriority(_sessionId, idx);
         return prepaiddbObject;
     }
 
