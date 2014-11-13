@@ -44,8 +44,8 @@
                 <dataSource>
                     <driver>oracle.jdbc.driver.OracleDriver</driver>
                     <url>jdbc:oracle:thin:@localhost:1521:XE</url>
-                    <username>RPAAEPDB</username>
-                    <password>admin1</password>
+                    <username>CBA_CONFIG</username>
+                    <password>admin</password>
 
                     <connectionProperties>oracle.net.CONNECT_TIMEOUT=2000;oracle.jdbc.ReadTimeout=5000</connectionProperties>
                     <removeAbandoned>true</removeAbandoned>

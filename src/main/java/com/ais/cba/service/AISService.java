@@ -151,7 +151,7 @@ public class AISService {
 
 
     public static DBObject AddCallbackRequest(String _sessionId, CBA_REQUEST params) {
-        DBObject prepaiddbObject = new DBObject();
+        DBObject prepaiddbObject = logService.AddCallbackRequest(_sessionId, params);
         return prepaiddbObject;
     }
 
