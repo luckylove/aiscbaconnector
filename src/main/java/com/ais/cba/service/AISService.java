@@ -13,7 +13,6 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -156,35 +155,33 @@ public class AISService {
     }
 
     public static DBObject UpdateCallbackRequest(String _sessionId, CBA_REQUEST params) {
-        DBObject prepaiddbObject = new DBObject();
+        DBObject prepaiddbObject = logService.UpdateCallbackRequest(_sessionId, params);
         return prepaiddbObject;
     }
 
     public static DBObject<List<CBA_REQUEST>> GetCallbackRequest(String _sessionId, Integer size) {
-        DBObject prepaiddbObject = new DBObject();
-        prepaiddbObject.setResult(new ArrayList<CBA_REQUEST>());
+        DBObject prepaiddbObject = logService.GetCallbackRequest(_sessionId, size);
         return prepaiddbObject;
     }
 
     public static DBObject<Boolean> CheckDuplicateCallbackRequest(String _sessionId, String mobileNumber, String serviceId, Integer interval) {
-        DBObject<Boolean> prepaiddbObject = new DBObject<Boolean>();
-        prepaiddbObject.setResult(true);
+        DBObject<Boolean> prepaiddbObject = logService.CheckDuplicateCallbackRequest(_sessionId, mobileNumber, serviceId, interval);
         return prepaiddbObject;
     }
 
     public static DBObject<Boolean> CheckMaxConcurrentCallbackRequest(String _sessionId, String serviceId, Integer maxConcurrentCall) {
-        DBObject prepaiddbObject = new DBObject();
+        DBObject prepaiddbObject = logService.CheckMaxConcurrentCallbackRequest(_sessionId, serviceId, maxConcurrentCall);
         prepaiddbObject.setResult(true);
         return prepaiddbObject;
     }
 
     public static DBObject AddAct(String _sessionId, CBA_ACT params) {
-        DBObject prepaiddbObject = new DBObject();
+        DBObject prepaiddbObject = logService.AddAct(_sessionId, params);
         return prepaiddbObject;
     }
 
     public static DBObject AddActDetail(String _sessionId, CBA_ACT_DETAIL params) {
-        DBObject prepaiddbObject = new DBObject();
+        DBObject prepaiddbObject = logService.AddActDetail(_sessionId, params);
         return prepaiddbObject;
     }
 
