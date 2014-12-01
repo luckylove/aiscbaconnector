@@ -367,6 +367,8 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_MAX_CONCURRENT_CALL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_DUPLICATE_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -433,6 +435,8 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_MAX_CONCURRENT_CALL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_DUPLICATE_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -493,6 +497,8 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_MAX_CONCURRENT_CALL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_DUPLICATE_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -547,6 +553,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_GENACT_ID_SUCC", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SMS_ID_FAIL", Types.VARCHAR),
                                 new SqlOutParameter("OUT_GENACT_ID_FAIL", Types.VARCHAR),
+                                new SqlOutParameter("OUT_AGENT_SPLIT", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -690,6 +697,51 @@ public class ConfigService {
                 //map to object
                 if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
                     CBA_PRIORITY ob = new CBA_PRIORITY();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+    public DBObject<CBA_NOCBA> GetNoCBA(final String _sessionId, final String phone) {
+        String configName = "GetNoCBA";
+        final Config cf = config.lookup(configName);
+        DBObject<CBA_NOCBA> rs = new DBObject<CBA_NOCBA>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("phone", phone);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_PHONE"
+                        ).declareParameters(
+                                new SqlParameter("IN_PHONE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IDX", Types.NUMERIC),
+                                new SqlOutParameter("OUT_PHONE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CREATE_DATE", Types.NUMERIC),
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_PHONE", phone);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
+                    CBA_NOCBA ob = new CBA_NOCBA();
                     AISUtils.map2Object(ob, execute);
                     rs.setResult(ob);
                 }

@@ -33,6 +33,7 @@
                         <config method="GetMenuSet" procerdure="SP_GET_CBA_MENU_SET" />
                         <config method="GetMenuDigits" procerdure="SP_GET_CBA_MENU_DIGIT" />
                         <config method="GetPriority" procerdure="SP_GET_CBA_PRIORITY" />
+                        <config method="GetNoCBA" procerdure="SP_GET_NO_CBA" />
                     </configs>
                 </dataSource>
 

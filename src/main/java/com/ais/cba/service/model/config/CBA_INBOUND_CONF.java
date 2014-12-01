@@ -21,7 +21,25 @@ public class CBA_INBOUND_CONF {
     private Long maxConcurrentCall;
     private Long duplicateInterval;
     private Long cbStartBuffer;
+    private Long cbaRepeatInterval;
+    private String cbaRepeatVdn;
 
+
+    public Long getCbaRepeatInterval() {
+        return cbaRepeatInterval;
+    }
+
+    public void setCbaRepeatInterval(Long cbaRepeatInterval) {
+        this.cbaRepeatInterval = cbaRepeatInterval;
+    }
+
+    public String getCbaRepeatVdn() {
+        return cbaRepeatVdn;
+    }
+
+    public void setCbaRepeatVdn(String cbaRepeatVdn) {
+        this.cbaRepeatVdn = cbaRepeatVdn;
+    }
 
     public Long getIdx() {
         return idx;

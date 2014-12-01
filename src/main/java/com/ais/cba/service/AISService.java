@@ -148,6 +148,11 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject<CBA_NOCBA> GetNoCBA(String _sessionId, String phone) {
+        DBObject<CBA_NOCBA> prepaiddbObject = configService.GetNoCBA(_sessionId, phone);
+        return prepaiddbObject;
+    }
+
 
     public static DBObject AddCallbackRequest(String _sessionId, CBA_REQUEST params) {
         DBObject prepaiddbObject = logService.AddCallbackRequest(_sessionId, params);

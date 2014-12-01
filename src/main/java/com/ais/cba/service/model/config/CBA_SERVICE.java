@@ -15,6 +15,16 @@ public class CBA_SERVICE {
     private String genactIdSucc;
     private String smsIdFail;
     private String genactIdFail;
+    private String agentSplit;
+
+
+    public String getAgentSplit() {
+        return agentSplit;
+    }
+
+    public void setAgentSplit(String agentSplit) {
+        this.agentSplit = agentSplit;
+    }
 
     public String getServiceId() {
         return serviceId;

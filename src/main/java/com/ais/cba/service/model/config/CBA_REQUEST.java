@@ -38,6 +38,15 @@ public class CBA_REQUEST {
     private String agentId;
     private String agentSplit;
     private String agentVdn;
+    private Long statusCount;
+
+    public Long getStatusCount() {
+        return statusCount;
+    }
+
+    public void setStatusCount(Long statusCount) {
+        this.statusCount = statusCount;
+    }
 
     public String getIdx() {
         return idx;
