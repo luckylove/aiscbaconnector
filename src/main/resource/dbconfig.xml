@@ -34,6 +34,7 @@
                         <config method="GetMenuDigits" procerdure="SP_GET_CBA_MENU_DIGIT" />
                         <config method="GetPriority" procerdure="SP_GET_CBA_PRIORITY" />
                         <config method="GetNoCBA" procerdure="SP_GET_NO_CBA" />
+                        <config method="GetSMSConf" procerdure="SP_GET_SMS_CONFIG" />
                     </configs>
                 </dataSource>
 

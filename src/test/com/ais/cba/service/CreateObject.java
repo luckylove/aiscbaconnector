@@ -23,7 +23,7 @@ public class CreateObject {
 
 
     public static void main(String[] args) throws Exception {
-        CreateObject ob = new CreateObject("CBA_ACT_DETAIL", false);
+        CreateObject ob = new CreateObject("CBA_SMS_CONF", false);
         BufferedReader r = null;
         OutputStreamWriter out = null;
         try {
@@ -65,9 +65,9 @@ public class CreateObject {
     }
 
     private OutputStreamWriter writeCls(String s) throws IOException {
-        String fileP = "E:\\Project\\testf\\AISCBA\\src\\main\\java\\com\\ais\\service\\model\\log\\";
+        String fileP = "E:\\Project\\testf\\AISCBA\\src\\main\\java\\com\\ais\\cba\\service\\model\\log\\";
         if (!this.isLog) {
-            fileP = "E:\\Project\\testf\\AISCBA\\src\\main\\java\\com\\ais\\service\\model\\config\\";
+            fileP = "E:\\Project\\testf\\AISCBA\\src\\main\\java\\com\\ais\\cba\\service\\model\\config\\";
         }
         OutputStreamWriter out = new OutputStreamWriter(
                 new FileOutputStream(fileP + this.ouputName + ".java"), "UTF-8");

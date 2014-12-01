@@ -1,6 +1,5 @@
 package com.ais.cba.service;
 
-import com.ais.cba.service.model.config.CBA_ACT_DETAIL;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -26,11 +25,13 @@ public class MainTest {
         re.setAgentId("aaaaaa");
         re.setAgentVdn("fffffff");
         AISService.CheckMaxConcurrentCallbackRequest("cc", "", 3);*/
-        CBA_ACT_DETAIL atc = new CBA_ACT_DETAIL();
+       /* CBA_ACT_DETAIL atc = new CBA_ACT_DETAIL();
         atc.setActdId("dd");
         atc.setActId("afie");
         atc.setResult("adddfie");
-        AISService.AddActDetail("aa", atc);
+        AISService.AddActDetail("aa", atc);*/
+
+        AISService.GetSMSConf("aaaaaaa", "1234", 1l, 2l);
 
     }
 

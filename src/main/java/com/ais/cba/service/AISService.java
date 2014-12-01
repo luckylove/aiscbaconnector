@@ -153,6 +153,11 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject<CBA_SMS_CONF> GetSMSConf(String _sessionId, String serviceId, Long status, Long statusCount) {
+        DBObject<CBA_SMS_CONF> prepaiddbObject = configService.GetSMSConf(_sessionId, serviceId, status, statusCount);
+        return prepaiddbObject;
+    }
+
 
     public static DBObject AddCallbackRequest(String _sessionId, CBA_REQUEST params) {
         DBObject prepaiddbObject = logService.AddCallbackRequest(_sessionId, params);
