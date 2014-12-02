@@ -3,6 +3,7 @@ package com.ais.cba.service;
 import com.ais.cba.config.model.Config;
 import com.ais.cba.config.model.LogConfig;
 import com.ais.cba.service.model.DBObject;
+import com.ais.cba.service.model.config.AV_INFOVIEW;
 import com.ais.cba.service.model.config.CBA_ACT;
 import com.ais.cba.service.model.config.CBA_ACT_DETAIL;
 import com.ais.cba.service.model.config.CBA_REQUEST;
@@ -179,7 +180,7 @@ public class LogService {
                                 "IN_RESULT",
                                 "IN_AGENT_ID",
                                 "IN_AGENT_SPLIT",
-                                "IN_AGENT_VDN"  ,
+                                "IN_AGENT_VDN",
                                 "IN_STATUS_COUNT"
                         ).declareParameters(
                                 new SqlParameter("IN_IDX", Types.VARCHAR),
@@ -450,6 +451,119 @@ public class LogService {
                 SqlParameterSource in = AISUtils.ob2SqlSource(params);
                 Map<String, Object> execute = simpleJdbcCall1.execute(in);
                 AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+                rs.setErrorCode(1);
+                rs.setErrorMsg(_sessionId + e.getMessage());
+            }
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+
+    public DBObject AddOneX(final String _sessionId, final AV_INFOVIEW params) {
+        String configName = "AddOneX";
+        final Config cf = config.lookup(configName);
+        DBObject rs = new DBObject();
+        if (cf != null) {
+            try {
+                AISLogUtil.printLine(logger, _sessionId, "Insert to db:" + cf.getProcerdure());
+                SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_SITEID",
+                                "IN_GUID",
+                                "IN_UUI",
+                                "IN_DNIS",
+                                "IN_CALLID",
+                                "IN_IVR_PORT",
+                                "IN_BUSINESS_GROUP",
+                                "IN_MOB_SEGMENT",
+                                "IN_SECRET_PASSWORD",
+                                "IN_CUST_NAME",
+                                "IN_CALLER_VERIFY",
+                                "IN_MOBILE_NO_STATUS",
+                                "IN_BIRTH_DATE",
+                                "IN_SERVICE_YEAR",
+                                "IN_CHURN_SCORE",
+                                "IN_ACC_BAL",
+                                "IN_MOBILE_NUMBER",
+                                "IN_CLV_SEGMENT",
+                                "IN_CUST_INSIGHT",
+                                "IN_CUST_CLASS",
+                                "IN_IVR_POINT",
+                                "IN_MNP",
+                                "IN_XFER_VDN",
+                                "IN_XFER_VDN_NAME",
+                                "IN_PMCC_VERIFY",
+                                "IN_ANI",
+                                "IN_CRM_SEGMENT",
+                                "IN_LOCATION_CODE",
+                                "IN_BILL_CYCLE",
+                                "IN_BLACK_LIST",
+                                "IN_PAYMENT_TYPE",
+                                "IN_ID_CARD_NO",
+                                "IN_PP_VERIFY",
+                                "IN_PP_VAS_PACKAGE",
+                                "IN_CC_VERIFY",
+                                "IN_CC_NUM",
+                                "IN_EXP_DATE",
+                                "IN_OVERFLOW",
+                                "IN_CUST_TYPE",
+                                "IN_SUBNET_TYPE",
+                                "IN_NETWORK_TYPE"
+                        ).declareParameters(
+                                new SqlParameter("IN_SITEID", Types.VARCHAR),
+                                new SqlParameter("IN_GUID", Types.VARCHAR),
+                                new SqlParameter("IN_UUI", Types.VARCHAR),
+                                new SqlParameter("IN_DNIS", Types.VARCHAR),
+                                new SqlParameter("IN_CALLID", Types.VARCHAR),
+                                new SqlParameter("IN_IVR_PORT", Types.VARCHAR),
+                                new SqlParameter("IN_BUSINESS_GROUP", Types.VARCHAR),
+                                new SqlParameter("IN_MOB_SEGMENT", Types.VARCHAR),
+                                new SqlParameter("IN_SECRET_PASSWORD", Types.VARCHAR),
+                                new SqlParameter("IN_CUST_NAME", Types.VARCHAR),
+                                new SqlParameter("IN_CALLER_VERIFY", Types.VARCHAR),
+                                new SqlParameter("IN_MOBILE_NO_STATUS", Types.VARCHAR),
+                                new SqlParameter("IN_BIRTH_DATE", Types.VARCHAR),
+                                new SqlParameter("IN_SERVICE_YEAR", Types.VARCHAR),
+                                new SqlParameter("IN_CHURN_SCORE", Types.VARCHAR),
+                                new SqlParameter("IN_ACC_BAL", Types.VARCHAR),
+                                new SqlParameter("IN_MOBILE_NUMBER", Types.VARCHAR),
+                                new SqlParameter("IN_CLV_SEGMENT", Types.VARCHAR),
+                                new SqlParameter("IN_CUST_INSIGHT", Types.VARCHAR),
+                                new SqlParameter("IN_CUST_CLASS", Types.VARCHAR),
+                                new SqlParameter("IN_IVR_POINT", Types.VARCHAR),
+                                new SqlParameter("IN_MNP", Types.VARCHAR),
+                                new SqlParameter("IN_XFER_VDN", Types.VARCHAR),
+                                new SqlParameter("IN_XFER_VDN_NAME", Types.VARCHAR),
+                                new SqlParameter("IN_PMCC_VERIFY", Types.VARCHAR),
+                                new SqlParameter("IN_ANI", Types.VARCHAR),
+                                new SqlParameter("IN_CRM_SEGMENT", Types.VARCHAR),
+                                new SqlParameter("IN_LOCATION_CODE", Types.VARCHAR),
+                                new SqlParameter("IN_BILL_CYCLE", Types.VARCHAR),
+                                new SqlParameter("IN_BLACK_LIST", Types.VARCHAR),
+                                new SqlParameter("IN_PAYMENT_TYPE", Types.VARCHAR),
+                                new SqlParameter("IN_ID_CARD_NO", Types.VARCHAR),
+                                new SqlParameter("IN_PP_VERIFY", Types.VARCHAR),
+                                new SqlParameter("IN_PP_VAS_PACKAGE", Types.VARCHAR),
+                                new SqlParameter("IN_CC_VERIFY", Types.VARCHAR),
+                                new SqlParameter("IN_CC_NUM", Types.VARCHAR),
+                                new SqlParameter("IN_EXP_DATE", Types.VARCHAR),
+                                new SqlParameter("IN_OVERFLOW", Types.VARCHAR),
+                                new SqlParameter("IN_CUST_TYPE", Types.VARCHAR),
+                                new SqlParameter("IN_SUBNET_TYPE", Types.VARCHAR),
+                                new SqlParameter("IN_NETWORK_TYPE", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = AISUtils.ob2SqlSource(params);
+                Map<String, Object> execute = simpleJdbcCall1.execute(in);
+                AISLogUtil.printLine(logger, _sessionId, "Done Insert to db: " + cf.getProcerdure());
             } catch (Exception e) {
                 logger.error(_sessionId, e);
                 rs.setErrorCode(1);

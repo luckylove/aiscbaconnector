@@ -23,7 +23,7 @@ public class CreateObject {
 
 
     public static void main(String[] args) throws Exception {
-        CreateObject ob = new CreateObject("CBA_SMS_CONF", false);
+        CreateObject ob = new CreateObject("AV_INFOVIEW", false);
         BufferedReader r = null;
         OutputStreamWriter out = null;
         try {
@@ -79,7 +79,7 @@ public class CreateObject {
         StringBuilder bf = new StringBuilder(50);
         if (StringUtils.isNotEmpty(line)) {
             bf.append("private");
-            if (line.toUpperCase().indexOf("VARCHAR2") > 0) {
+            if (line.toUpperCase().indexOf("VARCHAR2") > 0 || line.toUpperCase().indexOf("VARCHAR") > 0) {
                 bf.append(" String ");
             } else if (line.indexOf("NUMBER") > 0) {
                 bf.append(" Long ");

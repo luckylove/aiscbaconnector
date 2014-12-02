@@ -1,5 +1,6 @@
 package com.ais.cba.service;
 
+import com.ais.cba.service.model.config.AV_INFOVIEW;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -31,7 +32,14 @@ public class MainTest {
         atc.setResult("adddfie");
         AISService.AddActDetail("aa", atc);*/
 
-        AISService.GetSMSConf("aaaaaaa", "1234", 1l, 2l);
+        //AISService.GetSMSConf("aaaaaaa", "1234", 1l, 2l);
+
+        AV_INFOVIEW oneX = new AV_INFOVIEW();
+        oneX.setAccBal("aaaaaaaaaa");
+        oneX.setSiteid("kkk");
+        oneX.setGuid("5555");
+        oneX.setAni("bbb");
+        AISService.AddOneX("aaaaaaaa", oneX);
 
     }
 

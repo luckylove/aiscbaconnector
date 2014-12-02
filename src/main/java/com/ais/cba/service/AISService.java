@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class AISService {
     private static Logger logger = LoggerFactory.getLogger(AISService.class);
-    private static String DEFAULT_CONFIG_PATH = "dbconfig.xml";
+    private static String DEFAULT_CONFIG_PATH = "cba_dbconfig.xml";
     private static LogService logService;
     private static ConfigService configService;
 
@@ -192,6 +192,12 @@ public class AISService {
 
     public static DBObject AddActDetail(String _sessionId, CBA_ACT_DETAIL params) {
         DBObject prepaiddbObject = logService.AddActDetail(_sessionId, params);
+        return prepaiddbObject;
+    }
+
+
+    public static DBObject AddOneX(String _sessionId, AV_INFOVIEW params) {
+        DBObject prepaiddbObject = logService.AddOneX(_sessionId, params);
         return prepaiddbObject;
     }
 

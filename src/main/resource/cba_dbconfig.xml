@@ -38,6 +38,8 @@
                     </configs>
                 </dataSource>
 
+
+
             </getConfig>
 
 
@@ -70,6 +72,17 @@
                         <config method="AddAct" procerdure="SP_INS_CBA_ACT" />
                         <config method="AddActDetail" procerdure="SP_INS_CBA_ACT_DETAIL" />
                         <config method="GetPriority" procerdure="SP_GET_CBA_PRIORITY" />
+                    </configs>
+                </dataSource>
+
+                <dataSource>
+                    <driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
+                    <url>jdbc:sqlserver://127.0.0.1:1433;databaseName=CELLODB</url>
+                    <username>sa</username>
+                    <password>Luckylove</password>
+                    <!-- List config name will use this db-->
+                    <configs>
+                        <config method="AddOneX" procerdure="SP_INS_ONE_X"/>
                     </configs>
                 </dataSource>
 
