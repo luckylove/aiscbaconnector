@@ -1,6 +1,6 @@
 package com.ais.cba.service;
 
-import com.ais.cba.service.model.config.AV_INFOVIEW;
+import com.ais.cba.service.model.config.CBA_REQUEST;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -20,12 +20,11 @@ public class MainTest {
         // AISService.GetPriority("cc", 1l);
         // AISService.GetInboundConf("cc", "dc", "dc", "dc", "dc", "dc", "dc");
 
-       /* CBA_REQUEST re = new CBA_REQUEST();
-
-        re.setIdx("aaaaaaddddddddddddd");
+        CBA_REQUEST re = new CBA_REQUEST();
+        re.setIdx("afe22");
         re.setAgentId("aaaaaa");
         re.setAgentVdn("fffffff");
-        AISService.CheckMaxConcurrentCallbackRequest("cc", "", 3);*/
+        AISService.AddCallbackRequest("cc", re);
        /* CBA_ACT_DETAIL atc = new CBA_ACT_DETAIL();
         atc.setActdId("dd");
         atc.setActId("afie");
@@ -34,12 +33,12 @@ public class MainTest {
 
         //AISService.GetSMSConf("aaaaaaa", "1234", 1l, 2l);
 
-        AV_INFOVIEW oneX = new AV_INFOVIEW();
+      /*  AV_INFOVIEW oneX = new AV_INFOVIEW();
         oneX.setAccBal("aaaaaaaaaa");
         oneX.setSiteid("kkk");
         oneX.setGuid("5555");
         oneX.setAni("bbb");
-        AISService.AddOneX("aaaaaaaa", oneX);
+        AISService.AddOneX("aaaaaaaa", oneX);*/
 
     }
 

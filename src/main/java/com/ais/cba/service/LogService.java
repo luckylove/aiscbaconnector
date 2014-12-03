@@ -83,7 +83,9 @@ public class LogService {
                                 "IN_AGENT_ID",
                                 "IN_AGENT_SPLIT",
                                 "IN_AGENT_VDN",
-                                "IN_STATUS_COUNT"
+                                "IN_STATUS_COUNT",
+                                "IN_CHANNEL_ID",
+                                "IN_INTERACTION_ID"
                         ).declareParameters(
                                 new SqlParameter("IN_IDX", Types.VARCHAR),
                                 new SqlParameter("IN_REQ_DATETIME", Types.VARCHAR),
@@ -118,7 +120,9 @@ public class LogService {
                                 new SqlParameter("IN_AGENT_ID", Types.VARCHAR),
                                 new SqlParameter("IN_AGENT_SPLIT", Types.VARCHAR),
                                 new SqlParameter("IN_AGENT_VDN", Types.VARCHAR) ,
-                                new SqlParameter("IN_STATUS_COUNT", Types.NUMERIC)
+                                new SqlParameter("IN_STATUS_COUNT", Types.NUMERIC),
+                                new SqlParameter("IN_CHANNEL_ID", Types.VARCHAR),
+                                new SqlParameter("IN_INTERACTION_ID", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
                 SqlParameterSource in = AISUtils.ob2SqlSource(params);
@@ -181,7 +185,9 @@ public class LogService {
                                 "IN_AGENT_ID",
                                 "IN_AGENT_SPLIT",
                                 "IN_AGENT_VDN",
-                                "IN_STATUS_COUNT"
+                                "IN_STATUS_COUNT",
+                                "IN_CHANNEL_ID",
+                                "IN_INTERACTION_ID"
                         ).declareParameters(
                                 new SqlParameter("IN_IDX", Types.VARCHAR),
                                 new SqlParameter("IN_REQ_DATETIME", Types.VARCHAR),
@@ -217,6 +223,8 @@ public class LogService {
                                 new SqlParameter("IN_AGENT_SPLIT", Types.VARCHAR),
                                 new SqlParameter("IN_AGENT_VDN", Types.VARCHAR),
                                 new SqlParameter("IN_STATUS_COUNT", Types.NUMERIC),
+                                new SqlParameter("IN_CHANNEL_ID", Types.VARCHAR),
+                                new SqlParameter("IN_INTERACTION_ID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ROW_AFFECTED", Types.NUMERIC)
                         )
                         .withProcedureName(cf.getProcerdure());

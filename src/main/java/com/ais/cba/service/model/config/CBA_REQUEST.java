@@ -39,6 +39,24 @@ public class CBA_REQUEST {
     private String agentSplit;
     private String agentVdn;
     private Long statusCount;
+    private String channelId;
+    private String interactionId;
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
+    public String getInteractionId() {
+        return interactionId;
+    }
+
+    public void setInteractionId(String interactionId) {
+        this.interactionId = interactionId;
+    }
 
     public Long getStatusCount() {
         return statusCount;
