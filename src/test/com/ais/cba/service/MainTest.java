@@ -1,6 +1,5 @@
 package com.ais.cba.service;
 
-import com.ais.cba.service.model.config.CBA_REQUEST;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -20,11 +19,12 @@ public class MainTest {
         // AISService.GetPriority("cc", 1l);
         // AISService.GetInboundConf("cc", "dc", "dc", "dc", "dc", "dc", "dc");
 
-        CBA_REQUEST re = new CBA_REQUEST();
+        AISService.GetCallbackRequestLog("11", "aaaaaaddddddddddddd");
+        /*CBA_REQUEST re = new CBA_REQUEST();
         re.setIdx("afe22");
         re.setAgentId("aaaaaa");
         re.setAgentVdn("fffffff");
-        AISService.AddCallbackRequest("cc", re);
+        AISService.AddCallbackRequest("cc", re);*/
        /* CBA_ACT_DETAIL atc = new CBA_ACT_DETAIL();
         atc.setActdId("dd");
         atc.setActId("afie");

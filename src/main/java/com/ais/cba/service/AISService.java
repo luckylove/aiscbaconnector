@@ -201,5 +201,10 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject<CBA_REQUEST> GetCallbackRequestLog(String _sessionId, String idx) {
+        DBObject prepaiddbObject = logService.GetCallbackRequestLog(_sessionId, idx);
+        return prepaiddbObject;
+    }
+
 
 }

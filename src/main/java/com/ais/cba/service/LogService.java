@@ -11,6 +11,7 @@ import com.ais.cba.util.AISLogUtil;
 import com.ais.cba.util.AISUtils;
 import com.ais.cba.util.BeanPropertyRowMapperCustom;
 import oracle.jdbc.driver.OracleTypes;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.SqlOutParameter;
@@ -577,6 +578,86 @@ public class LogService {
                 rs.setErrorCode(1);
                 rs.setErrorMsg(_sessionId + e.getMessage());
             }
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+    public DBObject<CBA_REQUEST> GetCallbackRequestLog(final String _sessionId, final String idx) {
+        String configName = "GetCallbackRequestLog";
+        final Config cf = config.lookup(configName);
+        DBObject<CBA_REQUEST> rs = new DBObject<CBA_REQUEST>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("idx", idx);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_IDX"
+                        ).declareParameters(
+                                new SqlParameter("IN_IDX", Types.VARCHAR),
+
+                                new SqlOutParameter("OUT_IDX", Types.VARCHAR),
+                                new SqlOutParameter("OUT_REQ_DATETIME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_TIMEZONE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IVR_SESSIONID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_VDUID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ANI", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MOBILE_NUMBER", Types.VARCHAR),
+                                new SqlOutParameter("OUT_DNIS", Types.VARCHAR),
+                                new SqlOutParameter("OUT_NETWORK_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SUBNET_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MOB_SEGMENT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MOBILE_STATUS", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ARPU", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CALLBACK_PHONE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CB_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CB_REQUEST_TIME", Types.DATE),
+                                new SqlOutParameter("OUT_CB_STARTTIME", Types.DATE),
+                                new SqlOutParameter("OUT_CB_DELAY", Types.NUMERIC),
+                                new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
+                                new SqlOutParameter("OUT_NEXT_CALLTIME", Types.DATE),
+                                new SqlOutParameter("OUT_MAX_TRY", Types.NUMERIC),
+                                new SqlOutParameter("OUT_TRY_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_TRYS", Types.NUMERIC),
+                                new SqlOutParameter("OUT_PRIORITY", Types.NUMERIC),
+                                new SqlOutParameter("OUT_STATUS", Types.NUMERIC),
+                                new SqlOutParameter("OUT_WORKER_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_LAST_UPDATE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_RESULT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_AGENT_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_AGENT_SPLIT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_AGENT_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_STATUS_COUNT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CHANNEL_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_INTERACTION_ID", Types.VARCHAR),
+
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_IDX", idx);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
+                    CBA_REQUEST ob = new CBA_REQUEST();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
             return rs;
         } else {
             rs.setErrorCode(2);

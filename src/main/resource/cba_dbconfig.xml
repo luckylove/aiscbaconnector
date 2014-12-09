@@ -67,6 +67,7 @@
                         <config method="AddCallbackRequest" procerdure="SP_INS_CBA_REQUEST"/>
                         <config method="UpdateCallbackRequest" procerdure="SP_UPD_CBA_REQUEST" />
                         <config method="GetCallbackRequest" procerdure="SP_GET_CBA_REQUEST" />
+                        <config method="GetCallbackRequestLog" procerdure="SP_GET_CBA_REQUEST_LOG" />
                         <config method="CheckDuplicateCallbackRequest" procerdure="SP_CHK_DUP_CBA_REQUEST" />
                         <config method="CheckMaxConcurrentCallbackRequest" procerdure="SP_CHK_MAX_CBA_REQUEST" />
                         <config method="AddAct" procerdure="SP_INS_CBA_ACT" />
