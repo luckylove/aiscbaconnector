@@ -37,10 +37,12 @@ public class CBA_REQUEST {
     private String result;
     private String agentId;
     private String agentSplit;
-    private String agentVdn;
-    private Long statusCount;
     private String channelId;
     private String interactionId;
+    private String agentVdn;
+    private Long statusCount;
+
+
 
     public String getChannelId() {
         return channelId;

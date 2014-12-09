@@ -133,12 +133,12 @@ public class AISService {
         return prepaiddbObject;
     }
 
-    public static DBObject<CBA_MENU_SET> GetMenuSet(String _sessionId, String menuSetId) {
+    public static DBObject<CBA_MENU_SET> GetMenuSet(String _sessionId, Long menuSetId) {
         DBObject<CBA_MENU_SET> prepaiddbObject = configService.GetMenuSet(_sessionId, menuSetId);
         return prepaiddbObject;
     }
 
-    public static DBObject<List<CBA_MENU_DIGIT>> GetMenuDigits(String _sessionId, String menuSetId) {
+    public static DBObject<List<CBA_MENU_DIGIT>> GetMenuDigits(String _sessionId, Long menuSetId) {
         DBObject<List<CBA_MENU_DIGIT>> prepaiddbObject =  configService.GetMenuDigits(_sessionId, menuSetId);
         return prepaiddbObject;
     }

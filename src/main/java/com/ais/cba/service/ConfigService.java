@@ -582,7 +582,7 @@ public class ConfigService {
         }
     }
 
-    public DBObject<CBA_MENU_SET> GetMenuSet(final String _sessionId, final String menuSetId) {
+    public DBObject<CBA_MENU_SET> GetMenuSet(final String _sessionId, final Long menuSetId) {
         String configName = "GetMenuSet";
         final Config cf = config.lookup(configName);
         DBObject<CBA_MENU_SET> rs = new DBObject<CBA_MENU_SET>();
@@ -595,13 +595,13 @@ public class ConfigService {
                         .useInParameterNames(
                                 "IN_MENU_SET_ID"
                         ).declareParameters(
-                                new SqlParameter("IN_MENU_SET_ID", Types.VARCHAR),
-                                new SqlOutParameter("OUT_MENU_SET_ID ", Types.NUMERIC),
-                                new SqlOutParameter("OUT_MENU_SET_NAME ", Types.VARCHAR),
-                                new SqlOutParameter("OUT_LANG_ID ", Types.VARCHAR),
-                                new SqlOutParameter("OUT_DESCRIPTION ", Types.VARCHAR),
-                                new SqlOutParameter("OUT_PHR_MENU_SET ", Types.VARCHAR),
-                                new SqlOutParameter("OUT_MENU_SET_MENUID ", Types.VARCHAR),
+                                new SqlParameter("IN_MENU_SET_ID", Types.NUMERIC),
+                                new SqlOutParameter("OUT_MENU_SET_ID", Types.NUMERIC),
+                                new SqlOutParameter("OUT_MENU_SET_NAME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
+                                new SqlOutParameter("OUT_DESCRIPTION", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PHR_MENU_SET", Types.VARCHAR),
+                                new SqlOutParameter("OUT_MENU_SET_MENUID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -609,6 +609,7 @@ public class ConfigService {
                         .addValue("IN_MENU_SET_ID", menuSetId);
 
                 Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //AISLogUtil.printInput(logger, _sessionId, cf, null, execute);
                 //map to object
                 if (StringUtils.isEmpty((String) execute.get("OUT_NO_RESULT"))) {
                     CBA_MENU_SET ob = new CBA_MENU_SET();
@@ -630,7 +631,7 @@ public class ConfigService {
         }
     }
 
-    public DBObject<List<CBA_MENU_DIGIT>> GetMenuDigits(final String _sessionId, final String menuSetId) {
+    public DBObject<List<CBA_MENU_DIGIT>> GetMenuDigits(final String _sessionId, final Long menuSetId) {
         String configName = "GetMenuDigits";
         final Config cf = config.lookup(configName);
         DBObject<List<CBA_MENU_DIGIT>> rs = new DBObject<List<CBA_MENU_DIGIT>>();
@@ -643,7 +644,7 @@ public class ConfigService {
                         .useInParameterNames(
                                 "IN_MENU_SET_ID"
                         ).declareParameters(
-                                new SqlParameter("IN_MENU_SET_ID", Types.VARCHAR),
+                                new SqlParameter("IN_MENU_SET_ID", Types.NUMERIC),
                                 new SqlOutParameter("C_DBUSER", OracleTypes.CURSOR)
                         )
                         .withProcedureName(cf.getProcerdure()).returningResultSet("C_DBUSER", new BeanPropertyRowMapperCustom(CBA_MENU_DIGIT.class));
