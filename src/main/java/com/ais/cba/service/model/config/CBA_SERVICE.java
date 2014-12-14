@@ -11,11 +11,9 @@ public class CBA_SERVICE {
     private Long menuSetId;
     private Long maxTry;
     private Long tryInterval;
-    private String smsIdSucc;
-    private String genactIdSucc;
-    private String smsIdFail;
-    private String genactIdFail;
     private String agentSplit;
+    private String phrAgentGreeting;
+    private String phrCustGreeting;
 
 
     public String getAgentSplit() {
@@ -90,35 +88,19 @@ public class CBA_SERVICE {
         this.tryInterval = tryInterval;
     }
 
-    public String getSmsIdSucc() {
-        return smsIdSucc;
+    public String getPhrAgentGreeting() {
+        return phrAgentGreeting;
     }
 
-    public void setSmsIdSucc(String smsIdSucc) {
-        this.smsIdSucc = smsIdSucc;
+    public void setPhrAgentGreeting(String phrAgentGreeting) {
+        this.phrAgentGreeting = phrAgentGreeting;
     }
 
-    public String getGenactIdSucc() {
-        return genactIdSucc;
+    public String getPhrCustGreeting() {
+        return phrCustGreeting;
     }
 
-    public void setGenactIdSucc(String genactIdSucc) {
-        this.genactIdSucc = genactIdSucc;
-    }
-
-    public String getSmsIdFail() {
-        return smsIdFail;
-    }
-
-    public void setSmsIdFail(String smsIdFail) {
-        this.smsIdFail = smsIdFail;
-    }
-
-    public String getGenactIdFail() {
-        return genactIdFail;
-    }
-
-    public void setGenactIdFail(String genactIdFail) {
-        this.genactIdFail = genactIdFail;
+    public void setPhrCustGreeting(String phrCustGreeting) {
+        this.phrCustGreeting = phrCustGreeting;
     }
 }

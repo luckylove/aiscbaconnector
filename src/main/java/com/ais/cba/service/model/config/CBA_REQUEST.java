@@ -29,7 +29,7 @@ public class CBA_REQUEST {
     private Date nextCalltime;
     private Long maxTry;
     private Long tryInterval;
-    private Long trys;
+    private Long attempt;
     private Long priority;
     private Long status;
     private String workerId;
@@ -260,12 +260,12 @@ public class CBA_REQUEST {
         this.tryInterval = tryInterval;
     }
 
-    public Long getTrys() {
-        return trys;
+    public Long getAttempt() {
+        return attempt;
     }
 
-    public void setTrys(Long trys) {
-        this.trys = trys;
+    public void setAttempt(Long attempt) {
+        this.attempt = attempt;
     }
 
     public Long getPriority() {

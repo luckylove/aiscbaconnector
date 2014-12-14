@@ -549,11 +549,9 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_MENU_SET_ID", Types.NUMERIC),
                                 new SqlOutParameter("OUT_MAX_TRY", Types.NUMERIC),
                                 new SqlOutParameter("OUT_TRY_INTERVAL", Types.NUMERIC),
-                                new SqlOutParameter("OUT_SMS_ID_SUCC", Types.VARCHAR),
-                                new SqlOutParameter("OUT_GENACT_ID_SUCC", Types.VARCHAR),
-                                new SqlOutParameter("OUT_SMS_ID_FAIL", Types.VARCHAR),
-                                new SqlOutParameter("OUT_GENACT_ID_FAIL", Types.VARCHAR),
                                 new SqlOutParameter("OUT_AGENT_SPLIT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PHR_AGENT_GREETING", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PHR_CUST_GREETING", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());

@@ -19,7 +19,7 @@ public class MainTest {
         // AISService.GetPriority("cc", 1l);
         // AISService.GetInboundConf("cc", "dc", "dc", "dc", "dc", "dc", "dc");
 
-        AISService.GetCallbackRequestLog("11", "aaaaaaddddddddddddd");
+       // AISService.GetCallbackRequestLog("11", "aaaaaaddddddddddddd");
         /*CBA_REQUEST re = new CBA_REQUEST();
         re.setIdx("afe22");
         re.setAgentId("aaaaaa");
@@ -39,6 +39,8 @@ public class MainTest {
         oneX.setGuid("5555");
         oneX.setAni("bbb");
         AISService.AddOneX("aaaaaaaa", oneX);*/
+
+        AISService.GetService("11", "12");
 
     }
 
