@@ -4,7 +4,6 @@ package com.ais.cba.service.model.config;
 public class CBA_SERVICE {
 
     private String serviceId;
-    private String langId;
     private String serviceName;
     private String description;
     private Long sla;
@@ -30,14 +29,6 @@ public class CBA_SERVICE {
 
     public void setServiceId(String serviceId) {
         this.serviceId = serviceId;
-    }
-
-    public String getLangId() {
-        return langId;
-    }
-
-    public void setLangId(String langId) {
-        this.langId = langId;
     }
 
     public String getServiceName() {

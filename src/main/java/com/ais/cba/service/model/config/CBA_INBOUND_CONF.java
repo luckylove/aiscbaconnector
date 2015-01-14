@@ -9,9 +9,7 @@ public class CBA_INBOUND_CONF {
     private String subnetType;
     private String mobSegment;
     private String arpuRange;
-    private String xferVdn;
     private String cbaXferVdn;
-    private String cbaInboundVdn;
     private String serviceId;
     private String enable;
     private String startTime;
@@ -23,7 +21,15 @@ public class CBA_INBOUND_CONF {
     private Long cbStartBuffer;
     private Long cbaRepeatInterval;
     private String cbaRepeatVdn;
+    private String ivrService;
 
+    public String getIvrService() {
+        return ivrService;
+    }
+
+    public void setIvrService(String ivrService) {
+        this.ivrService = ivrService;
+    }
 
     public Long getCbaRepeatInterval() {
         return cbaRepeatInterval;
@@ -89,28 +95,12 @@ public class CBA_INBOUND_CONF {
         this.arpuRange = arpuRange;
     }
 
-    public String getXferVdn() {
-        return xferVdn;
-    }
-
-    public void setXferVdn(String xferVdn) {
-        this.xferVdn = xferVdn;
-    }
-
     public String getCbaXferVdn() {
         return cbaXferVdn;
     }
 
     public void setCbaXferVdn(String cbaXferVdn) {
         this.cbaXferVdn = cbaXferVdn;
-    }
-
-    public String getCbaInboundVdn() {
-        return cbaInboundVdn;
-    }
-
-    public void setCbaInboundVdn(String cbaInboundVdn) {
-        this.cbaInboundVdn = cbaInboundVdn;
     }
 
     public String getServiceId() {

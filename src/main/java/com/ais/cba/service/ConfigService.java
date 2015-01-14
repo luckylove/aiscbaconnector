@@ -319,7 +319,7 @@ public class ConfigService {
 
 
     public DBObject<CBA_INBOUND_CONF> GetInboundConf(final String _sessionId, final String langId, final String networkType, final String subnetType,
-                                                final String mobileSegment, final String arpu, final String xferVdn) {
+                                                final String mobileSegment, final String arpu, final String ivrService) {
         String configName = "GetInboundConf";
         final Config cf = config.lookup(configName);
         DBObject<CBA_INBOUND_CONF> rs = new DBObject<CBA_INBOUND_CONF>();
@@ -330,7 +330,7 @@ public class ConfigService {
                 put("subnetType", subnetType);
                 put("mobileSegment", mobileSegment);
                 put("arpu", arpu);
-                put("xferVdn", xferVdn);
+                put("ivrService", ivrService);
             }});
             try {
                 SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
@@ -340,14 +340,14 @@ public class ConfigService {
                                 "IN_SUBNET_TYPE",
                                 "IN_MOB_SEGMENT",
                                 "IN_ARPU",
-                                "IN_XFER_VDN"
+                                "IN_IVR_SERVICE"
                         ).declareParameters(
                                 new SqlParameter("IN_LANG_ID", Types.VARCHAR),
                                 new SqlParameter("IN_NETWORK_TYPE", Types.VARCHAR),
                                 new SqlParameter("IN_SUBNET_TYPE", Types.VARCHAR),
                                 new SqlParameter("IN_MOB_SEGMENT", Types.VARCHAR),
                                 new SqlParameter("IN_ARPU", Types.VARCHAR),
-                                new SqlParameter("IN_XFER_VDN", Types.VARCHAR),
+                                new SqlParameter("IN_IVR_SERVICE", Types.VARCHAR),
 
                                 new SqlOutParameter("OUT_IDX", Types.NUMERIC),
                                 new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
@@ -355,9 +355,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_SUBNET_TYPE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_MOB_SEGMENT", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ARPU_RANGE", Types.VARCHAR),
-                                new SqlOutParameter("OUT_XFER_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_CBA_XFER_VDN", Types.VARCHAR),
-                                new SqlOutParameter("OUT_CBA_INBOUND_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ENABLE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_START_TIME", Types.VARCHAR),
@@ -369,6 +367,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IVR_SERVICE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -378,7 +377,7 @@ public class ConfigService {
                         .addValue("IN_SUBNET_TYPE", subnetType)
                         .addValue("IN_MOB_SEGMENT", mobileSegment)
                         .addValue("IN_ARPU", arpu)
-                        .addValue("IN_XFER_VDN", xferVdn);
+                        .addValue("IN_IVR_SERVICE", ivrService);
 
                 Map<String, Object> execute = simpleJdbcCall.execute(in);
                 //map to object
@@ -423,9 +422,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_SUBNET_TYPE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_MOB_SEGMENT", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ARPU_RANGE", Types.VARCHAR),
-                                new SqlOutParameter("OUT_XFER_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_CBA_XFER_VDN", Types.VARCHAR),
-                                new SqlOutParameter("OUT_CBA_INBOUND_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ENABLE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_START_TIME", Types.VARCHAR),
@@ -437,6 +434,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IVR_SERVICE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -485,9 +483,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_SUBNET_TYPE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_MOB_SEGMENT", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ARPU_RANGE", Types.VARCHAR),
-                                new SqlOutParameter("OUT_XFER_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_CBA_XFER_VDN", Types.VARCHAR),
-                                new SqlOutParameter("OUT_CBA_INBOUND_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_ENABLE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_START_TIME", Types.VARCHAR),
@@ -499,6 +495,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_CB_START_BUFFER", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IVR_SERVICE", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -542,7 +539,6 @@ public class ConfigService {
                         ).declareParameters(
                                 new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SERVICE_ID", Types.VARCHAR),
-                                new SqlOutParameter("OUT_LANG_ID", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SERVICE_NAME", Types.VARCHAR),
                                 new SqlOutParameter("OUT_DESCRIPTION", Types.VARCHAR),
                                 new SqlOutParameter("OUT_SLA", Types.NUMERIC),
