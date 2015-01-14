@@ -17,7 +17,7 @@ public class MainTest {
         // AISService.GetBlackList("cc", "222222");
         // AISService.GetDNC("cc", "222222");
         // AISService.GetPriority("cc", 1l);
-        //AISService.GetInboundConf("cc", "dc", "dc", "dc", "dc", "dc", "dc");
+        AISService.GetInboundConf("cc", "dc", "dc", "dc", "150", "150", "kkkh");
         //AISService.GetInboundConfByServiceID("aa", "qq");
        // AISService.GetCallbackRequestLog("11", "aaaaaaddddddddddddd");
         /*CBA_REQUEST re = new CBA_REQUEST();
@@ -40,7 +40,7 @@ public class MainTest {
         oneX.setAni("bbb");
         AISService.AddOneX("aaaaaaaa", oneX);*/
 
-        AISService.GetService("11", "12");
+        //AISService.GetService("11", "12");
                     /*
         CBA_ACT db = new CBA_ACT();
         db.setActId("ssss");

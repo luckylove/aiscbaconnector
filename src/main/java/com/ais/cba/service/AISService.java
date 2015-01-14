@@ -112,8 +112,8 @@ public class AISService {
     }
 
     public static DBObject<CBA_INBOUND_CONF> GetInboundConf(String _sessionId, String langId, String networkType, String subnetType,
-                                                            String mobileSegment, String arpu, String xferVdn) {
-        DBObject<CBA_INBOUND_CONF> prepaiddbObject = configService.GetInboundConf(_sessionId, langId, networkType, subnetType, mobileSegment, arpu, xferVdn);
+                                                            String mobileSegment, String arpu, String ivrService) {
+        DBObject<CBA_INBOUND_CONF> prepaiddbObject = configService.GetInboundConf(_sessionId, langId, networkType, subnetType, mobileSegment, arpu, ivrService);
         return prepaiddbObject;
     }
 
