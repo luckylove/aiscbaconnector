@@ -400,14 +400,14 @@ public class LogService {
                                 "IN_STARTTIME",
                                 "IN_ENDTIME",
                                 "IN_CBA_REQ_ID",
-                                "IN_TRYS",
+                                "IN_ATTEMPT",
                                 "IN_RESULT"
                         ).declareParameters(
                                 new SqlParameter("IN_ACT_ID", Types.VARCHAR),
                                 new SqlParameter("IN_STARTTIME", Types.VARCHAR),
                                 new SqlParameter("IN_ENDTIME", Types.VARCHAR),
                                 new SqlParameter("IN_CBA_REQ_ID", Types.VARCHAR),
-                                new SqlParameter("IN_TRYS", Types.NUMERIC),
+                                new SqlParameter("IN_ATTEMPT", Types.NUMERIC),
                                 new SqlParameter("IN_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());

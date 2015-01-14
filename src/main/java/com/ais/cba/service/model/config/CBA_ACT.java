@@ -7,7 +7,7 @@ public class CBA_ACT {
     private String starttime;
     private String endtime;
     private String cbaReqId;
-    private Long trys;
+    private Long attempt;
     private String result;
 
     public String getActId() {
@@ -42,12 +42,12 @@ public class CBA_ACT {
         this.cbaReqId = cbaReqId;
     }
 
-    public Long getTrys() {
-        return trys;
+    public Long getAttempt() {
+        return attempt;
     }
 
-    public void setTrys(Long trys) {
-        this.trys = trys;
+    public void setAttempt(Long attempt) {
+        this.attempt = attempt;
     }
 
     public String getResult() {
