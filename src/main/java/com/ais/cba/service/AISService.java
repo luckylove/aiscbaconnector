@@ -207,4 +207,9 @@ public class AISService {
     }
 
 
+    public static DBObject UpdateAct(String _sessionId, CBA_ACT params) {
+        DBObject prepaiddbObject = logService.UpdateAct(_sessionId, params);
+        return prepaiddbObject;
+    }
+
 }
