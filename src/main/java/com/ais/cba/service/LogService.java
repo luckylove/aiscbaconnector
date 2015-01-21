@@ -429,6 +429,54 @@ public class LogService {
         }
     }
 
+    public DBObject UpdateAct(final String _sessionId, final CBA_ACT params) {
+        String configName = "UpdateAct";
+        final Config cf = config.lookup(configName);
+        DBObject rs = new DBObject();
+        if (cf != null) {
+            try {
+                AISLogUtil.printLine(logger, _sessionId, "Update to db:" + cf.getProcerdure());
+                SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_ACT_ID",
+                                "IN_STARTTIME",
+                                "IN_ENDTIME",
+                                "IN_CBA_REQ_ID",
+                                "IN_ATTEMPT",
+                                "IN_RESULT"
+                        ).declareParameters(
+                                new SqlParameter("IN_ACT_ID", Types.VARCHAR),
+                                new SqlParameter("IN_STARTTIME", Types.VARCHAR),
+                                new SqlParameter("IN_ENDTIME", Types.VARCHAR),
+                                new SqlParameter("IN_CBA_REQ_ID", Types.VARCHAR),
+                                new SqlParameter("IN_ATTEMPT", Types.NUMERIC),
+                                new SqlParameter("IN_RESULT", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ROW_AFFECTED", Types.NUMERIC)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = AISUtils.ob2SqlSource(params);
+                Map<String, Object> execute = simpleJdbcCall1.execute(in);
+                Object out_row_affected = execute.get("OUT_ROW_AFFECTED");
+                if (out_row_affected != null) {
+                    BigDecimal bigDecimal = (BigDecimal)out_row_affected;
+                    rs.setResult(bigDecimal.longValue());
+                }
+                AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+                rs.setErrorCode(1);
+                rs.setErrorMsg(_sessionId + e.getMessage());
+            }
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
     public DBObject AddActDetail(final String _sessionId, final CBA_ACT_DETAIL params) {
         String configName = "AddActDetail";
         final Config cf = config.lookup(configName);

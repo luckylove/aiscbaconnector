@@ -1,5 +1,6 @@
 package com.ais.cba.service;
 
+import com.ais.cba.service.model.config.CBA_ACT;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -47,6 +48,8 @@ public class MainTest {
         db.setAttempt(10l);
         db.setEndtime("sss");
         AISService.AddAct("dd", db);*/
+        CBA_ACT db = new CBA_ACT();
+        AISService.UpdateAct("", db);
     }
 
 
