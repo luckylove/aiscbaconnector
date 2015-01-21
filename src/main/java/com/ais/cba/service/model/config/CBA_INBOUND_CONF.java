@@ -22,6 +22,15 @@ public class CBA_INBOUND_CONF {
     private Long cbaRepeatInterval;
     private String cbaRepeatVdn;
     private String ivrService;
+    private String cbaBackupVdn;
+
+    public String getCbaBackupVdn() {
+        return cbaBackupVdn;
+    }
+
+    public void setCbaBackupVdn(String cbaBackupVdn) {
+        this.cbaBackupVdn = cbaBackupVdn;
+    }
 
     public String getIvrService() {
         return ivrService;

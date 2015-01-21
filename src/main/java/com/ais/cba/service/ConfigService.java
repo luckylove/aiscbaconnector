@@ -368,6 +368,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_IVR_SERVICE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_BACKUP_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -435,6 +436,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_IVR_SERVICE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_BACKUP_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
@@ -496,6 +498,7 @@ public class ConfigService {
                                 new SqlOutParameter("OUT_CBA_REPEAT_INTERVAL", Types.NUMERIC),
                                 new SqlOutParameter("OUT_CBA_REPEAT_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_IVR_SERVICE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_CBA_BACKUP_VDN", Types.VARCHAR),
                                 new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
                         .withProcedureName(cf.getProcerdure());
