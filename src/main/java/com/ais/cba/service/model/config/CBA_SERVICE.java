@@ -13,7 +13,24 @@ public class CBA_SERVICE {
     private String agentSplit;
     private String phrAgentGreeting;
     private String phrCustGreeting;
+    private String phrCustEnding;
+    private String phrCustError;
 
+    public String getPhrCustEnding() {
+        return phrCustEnding;
+    }
+
+    public void setPhrCustEnding(String phrCustEnding) {
+        this.phrCustEnding = phrCustEnding;
+    }
+
+    public String getPhrCustError() {
+        return phrCustError;
+    }
+
+    public void setPhrCustError(String phrCustError) {
+        this.phrCustError = phrCustError;
+    }
 
     public String getAgentSplit() {
         return agentSplit;

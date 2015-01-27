@@ -1,6 +1,5 @@
 package com.ais.cba.service;
 
-import com.ais.cba.service.model.config.CBA_ACT;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -18,9 +17,9 @@ public class MainTest {
         // AISService.GetBlackList("cc", "222222");
         // AISService.GetDNC("cc", "222222");
         // AISService.GetPriority("cc", 1l);
-       // AISService.GetInboundConf("cc", "dc", "dc", "dc", "150", "150", "kkkh");
-       AISService.GetInboundConfByServiceID("aa", "qq");
-       // AISService.GetCallbackRequestLog("11", "aaaaaaddddddddddddd");
+        // AISService.GetInboundConf("cc", "dc", "dc", "dc", "150", "150", "kkkh");
+        //AISService.GetInboundConfByInboundVDN("aa", "qq");
+        // AISService.GetCallbackRequestLog("11", "aaaaaaddddddddddddd");
         /*CBA_REQUEST re = new CBA_REQUEST();
         re.setIdx("afe22");
         re.setAgentId("aaaaaa");
@@ -48,8 +47,10 @@ public class MainTest {
         db.setAttempt(10l);
         db.setEndtime("sss");
         AISService.AddAct("dd", db);*/
-        CBA_ACT db = new CBA_ACT();
-        AISService.UpdateAct("", db);
+        //CBA_ACT db = new CBA_ACT();
+        //AISService.UpdateAct("", db);
+
+        AISService.GetLastMenu("sss", "AAA", "DdD");
     }
 
 

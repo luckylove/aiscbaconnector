@@ -212,4 +212,9 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject<String> GetLastMenu(String _sessionId, String serviceId, String ivrService) {
+        DBObject<String> prepaiddbObject = configService.GetLastMenu(_sessionId, serviceId, ivrService);
+        return prepaiddbObject;
+    }
+
 }
