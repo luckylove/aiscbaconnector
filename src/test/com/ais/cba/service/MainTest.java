@@ -1,6 +1,9 @@
 package com.ais.cba.service;
 
+import com.ais.cba.service.model.config.AV_INFOVIEW;
 import org.codehaus.jackson.map.ObjectMapper;
+
+import java.util.Date;
 
 /**
  * User: son.nguyen
@@ -33,12 +36,14 @@ public class MainTest {
 
         //AISService.GetSMSConf("aaaaaaa", "1234", 1l, 2l);
 
-      /*  AV_INFOVIEW oneX = new AV_INFOVIEW();
-        oneX.setAccBal("aaaaaaaaaa");
+        AV_INFOVIEW oneX = new AV_INFOVIEW();
+        oneX.setAccBal("ddd");
         oneX.setSiteid("kkk");
-        oneX.setGuid("5555");
-        oneX.setAni("bbb");
-        AISService.AddOneX("aaaaaaaa", oneX);*/
+        oneX.setGuid("5555444");
+        oneX.setAni("bbafwefwb");
+        oneX.setIvrPoint("ko pppp");
+        oneX.setRecordTime(new Date());
+        AISService.UpdateOneX("aaaaaaaa", oneX);
 
         //AISService.GetService("11", "12");
                     /*
@@ -50,7 +55,7 @@ public class MainTest {
         //CBA_ACT db = new CBA_ACT();
         //AISService.UpdateAct("", db);
 
-        AISService.GetLastMenu("sss", "AAA", "DdD");
+        //AISService.GetLastMenu("sss", "AAA", "DdD");
     }
 
 

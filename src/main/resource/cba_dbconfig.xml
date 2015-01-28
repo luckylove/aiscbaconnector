@@ -86,6 +86,7 @@
                     <!-- List config name will use this db-->
                     <configs>
                         <config method="AddOneX" procerdure="SP_INS_ONE_X"/>
+                        <config method="UpdateOneX" procerdure="SP_UPD_ONE_X"/>
                     </configs>
                 </dataSource>
 

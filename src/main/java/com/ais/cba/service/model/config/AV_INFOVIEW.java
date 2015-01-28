@@ -1,6 +1,8 @@
 package com.ais.cba.service.model.config;
 
 
+import java.util.Date;
+
 public class AV_INFOVIEW {
 
     private String siteid;
@@ -44,7 +46,15 @@ public class AV_INFOVIEW {
     private String custType;
     private String subnetType;
     private String networkType;
+    private Date recordTime;
 
+    public Date getRecordTime() {
+        return recordTime;
+    }
+
+    public void setRecordTime(Date recordTime) {
+        this.recordTime = recordTime;
+    }
 
     public String getSiteid() {
         return siteid;

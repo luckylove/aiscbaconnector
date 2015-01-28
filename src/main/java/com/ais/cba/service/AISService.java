@@ -217,4 +217,10 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject UpdateOneX(String _sessionId, AV_INFOVIEW params) {
+        DBObject prepaiddbObject = logService.UpdateOneX(_sessionId, params);
+        return prepaiddbObject;
+    }
+
+
 }
