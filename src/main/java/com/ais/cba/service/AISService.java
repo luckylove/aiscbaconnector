@@ -181,7 +181,6 @@ public class AISService {
 
     public static DBObject<Boolean> CheckMaxConcurrentCallbackRequest(String _sessionId, String serviceId, Integer maxConcurrentCall) {
         DBObject prepaiddbObject = logService.CheckMaxConcurrentCallbackRequest(_sessionId, serviceId, maxConcurrentCall);
-        prepaiddbObject.setResult(true);
         return prepaiddbObject;
     }
 
