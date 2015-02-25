@@ -828,10 +828,10 @@ public class LogService {
         }
     }
 
-    public DBObject<List<CBA_REQUEST>> CheckRepeatFailedRequest(final String _sessionId, final String mobileNumber, final String serviceId, final int interval) {
+    public DBObject<Boolean> CheckRepeatFailedRequest(final String _sessionId, final String mobileNumber, final String serviceId, final int interval) {
         String configName = "CheckRepeatFailedRequest";
         final Config cf = config.lookup(configName);
-        DBObject<List<CBA_REQUEST>> rs = new DBObject<List<CBA_REQUEST> >();
+        DBObject<Boolean> rs = new DBObject<Boolean>();
         if (cf != null) {
             AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
                 put("mobileNumber", mobileNumber);
@@ -848,17 +848,21 @@ public class LogService {
                                 new SqlParameter("IN_MOBILE_NUMBER", Types.VARCHAR),
                                 new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
                                 new SqlParameter("IN_INTERVAL", Types.NUMERIC),
-                                new SqlOutParameter("C_DBUSER", OracleTypes.CURSOR)
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
                         )
-                        .withProcedureName(cf.getProcerdure()).returningResultSet("C_DBUSER", new BeanPropertyRowMapperCustom(CBA_REQUEST.class));
+                        .withProcedureName(cf.getProcerdure());
                 SqlParameterSource in = new MapSqlParameterSource()
                         .addValue("IN_MOBILE_NUMBER", mobileNumber)
                         .addValue("IN_SERVICE_ID", serviceId)
                         .addValue("IN_INTERVAL", interval);
 
                 Map<String, Object> execute = simpleJdbcCall.execute(in);
-                List<CBA_REQUEST> list = (List) execute.get("C_DBUSER");
-                rs.setResult(list);
+                //map to object
+                if ("DUP".equals(execute.get("OUT_NO_RESULT"))) {
+                    rs.setResult(true);
+                } else {
+                    rs.setResult(false);
+                }
             } catch (Exception e) {
                 logger.error(_sessionId, e);
             }
@@ -874,7 +878,7 @@ public class LogService {
         }
     }
 
-    public DBObject UpdateOverSLAStatus(final String _sessionId, final CBA_REQUEST params) {
+    public DBObject UpdateOverSLAStatus(final String _sessionId) {
         String configName = "UpdateOverSLAStatus";
         final Config cf = config.lookup(configName);
         DBObject rs = new DBObject();
@@ -887,8 +891,8 @@ public class LogService {
                                 new SqlOutParameter("OUT_ROW_AFFECTED", Types.NUMERIC)
                         )
                         .withProcedureName(cf.getProcerdure());
-                SqlParameterSource in = AISUtils.ob2SqlSource(params);
-                Map<String, Object> execute = simpleJdbcCall1.execute(in);
+               // SqlParameterSource in = AISUtils.ob2SqlSource(params);
+                Map<String, Object> execute = simpleJdbcCall1.execute();
                 Object out_row_affected = execute.get("OUT_ROW_AFFECTED");
                 if (out_row_affected != null) {
                     BigDecimal bigDecimal = (BigDecimal)out_row_affected;

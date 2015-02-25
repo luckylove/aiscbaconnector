@@ -221,13 +221,13 @@ public class AISService {
         return prepaiddbObject;
     }
 
-    public static DBObject<List<CBA_REQUEST>> CheckRepeatFailedRequest(String _sessionId, String mobileNumber, String serviceId, int interval) {
-        DBObject<List<CBA_REQUEST>> prepaiddbObject = logService.CheckRepeatFailedRequest(_sessionId, mobileNumber, serviceId, interval);
+    public static DBObject<Boolean> CheckRepeatFailedRequest(String _sessionId, String mobileNumber, String serviceId, int interval) {
+        DBObject<Boolean> prepaiddbObject = logService.CheckRepeatFailedRequest(_sessionId, mobileNumber, serviceId, interval);
         return prepaiddbObject;
     }
 
-    public static DBObject UpdateOverSLAStatus(String _sessionId, CBA_REQUEST params) {
-        DBObject prepaiddbObject = logService.UpdateOverSLAStatus(_sessionId, params);
+    public static DBObject UpdateOverSLAStatus(String _sessionId) {
+        DBObject prepaiddbObject = logService.UpdateOverSLAStatus(_sessionId);
         return prepaiddbObject;
     }
 
