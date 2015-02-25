@@ -828,4 +828,86 @@ public class LogService {
         }
     }
 
+    public DBObject<List<CBA_REQUEST>> CheckRepeatFailedRequest(final String _sessionId, final String mobileNumber, final String serviceId, final int interval) {
+        String configName = "CheckRepeatFailedRequest";
+        final Config cf = config.lookup(configName);
+        DBObject<List<CBA_REQUEST>> rs = new DBObject<List<CBA_REQUEST> >();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("mobileNumber", mobileNumber);
+                put("serviceId", serviceId);
+                put("interval", interval);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_MOBILE_NUMBER",
+                                "IN_SERVICE_ID" ,
+                                "IN_INTERVAL"
+                        ).declareParameters(
+                                new SqlParameter("IN_MOBILE_NUMBER", Types.VARCHAR),
+                                new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
+                                new SqlParameter("IN_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("C_DBUSER", OracleTypes.CURSOR)
+                        )
+                        .withProcedureName(cf.getProcerdure()).returningResultSet("C_DBUSER", new BeanPropertyRowMapperCustom(CBA_REQUEST.class));
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_MOBILE_NUMBER", mobileNumber)
+                        .addValue("IN_SERVICE_ID", serviceId)
+                        .addValue("IN_INTERVAL", interval);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                List<CBA_REQUEST> list = (List) execute.get("C_DBUSER");
+                rs.setResult(list);
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+    public DBObject UpdateOverSLAStatus(final String _sessionId, final CBA_REQUEST params) {
+        String configName = "UpdateOverSLAStatus";
+        final Config cf = config.lookup(configName);
+        DBObject rs = new DBObject();
+        if (cf != null) {
+            try {
+                AISLogUtil.printLine(logger, _sessionId, "Update to db:" + cf.getProcerdure());
+                SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                        ).declareParameters(
+                                new SqlOutParameter("OUT_ROW_AFFECTED", Types.NUMERIC)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = AISUtils.ob2SqlSource(params);
+                Map<String, Object> execute = simpleJdbcCall1.execute(in);
+                Object out_row_affected = execute.get("OUT_ROW_AFFECTED");
+                if (out_row_affected != null) {
+                    BigDecimal bigDecimal = (BigDecimal)out_row_affected;
+                    rs.setResult(bigDecimal.longValue());
+                }
+                AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+                rs.setErrorCode(1);
+                rs.setErrorMsg(_sessionId + e.getMessage());
+            }
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
 }
