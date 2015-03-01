@@ -231,5 +231,11 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject UpdateCancelActiveReq(String _sessionId, String mobileNumber, String serviceId, int interval) {
+        DBObject prepaiddbObject = logService.UpdateCancelActiveReq(_sessionId, mobileNumber, serviceId, interval);
+        return prepaiddbObject;
+    }
+
+
 
 }
