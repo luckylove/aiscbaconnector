@@ -1,6 +1,5 @@
 package com.ais.cba.service;
 
-import com.ais.cba.service.model.DBObject;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -55,8 +54,8 @@ public class MainTest {
 
         //AISService.GetLastMenu("sss", "AAA", "DdD");
 
-        DBObject<Boolean> aaaaaaaa = AISService.CheckRepeatFailedRequest("aaaaaaaa", "122333", "3333", 60);
-        System.out.println(aaaaaaaa.getResult());
+       /* DBObject<Boolean> aaaaaaaa = AISService.CheckRepeatFailedRequest("aaaaaaaa", "122333", "3333", 60);
+        System.out.println(aaaaaaaa.getResult());*/
 
 /*
          CBA_REQUEST re = new CBA_REQUEST();
@@ -64,6 +63,8 @@ public class MainTest {
         re.setAgentId("aaaaaa");
         re.setAgentVdn("fffffff");
         AISService.UpdateOverSLAStatus("cc");*/
+
+        AISService.UpdateCancelActiveReq("aaa", "122333", "3333", 22);
     }
 
 
