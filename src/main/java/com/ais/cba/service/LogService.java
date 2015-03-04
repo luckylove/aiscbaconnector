@@ -261,7 +261,7 @@ public class LogService {
                 put("size", size);
             }});
             try {
-                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate())
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
                         .withProcedureName(cf.getProcerdure()).returningResultSet("C_DBUSER", new BeanPropertyRowMapperCustom(CBA_REQUEST.class))
                         .useInParameterNames(
                                 "IN_SIZE"
