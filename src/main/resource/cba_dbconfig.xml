@@ -76,6 +76,7 @@
                         <config method="GetPriority" procerdure="SP_GET_CBA_PRIORITY" />
                         <config method="UpdateAct" procerdure="SP_UPD_CBA_ACT" />
                         <config method="CheckRepeatFailedRequest" procerdure="SP_CBA_REPEAT_FAILED_REQUEST" />
+                        <config method="CheckRepeatActiveRequest" procerdure="SP_CBA_REPEAT_ACTIVE_REQUEST" />
                         <config method="UpdateOverSLAStatus" procerdure="SP_UPD_CBA_OVERSLA_RESULT" />
                         <config method="UpdateCancelActiveReq" procerdure="SP_UPD_CBA_CANCEL_ACTIVE_REQ" />
                     </configs>

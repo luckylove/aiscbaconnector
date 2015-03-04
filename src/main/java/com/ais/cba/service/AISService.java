@@ -236,6 +236,9 @@ public class AISService {
         return prepaiddbObject;
     }
 
-
+    public static DBObject<Boolean> CheckRepeatActiveRequest(String _sessionId, String mobileNumber, String serviceId, int interval) {
+        DBObject<Boolean> prepaiddbObject = logService.CheckRepeatFailedRequest(_sessionId, mobileNumber, serviceId, interval);
+        return prepaiddbObject;
+    }
 
 }

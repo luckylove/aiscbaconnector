@@ -64,7 +64,7 @@ public class MainTest {
         re.setAgentVdn("fffffff");
         AISService.UpdateOverSLAStatus("cc");*/
 
-        AISService.UpdateCancelActiveReq("aaa", "122333", "3333", 22);
+       // AISService.UpdateCancelActiveReq("aaa", "122333", "3333", 22);
     }
 
 

@@ -14,6 +14,7 @@ import oracle.jdbc.driver.OracleTypes;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -921,6 +922,11 @@ public class LogService {
         if (cf != null) {
             try {
                 AISLogUtil.printLine(logger, _sessionId, "Update to db:" + cf.getProcerdure());
+                AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                    put("mobileNumber", mobileNumber);
+                    put("serviceId", serviceId);
+                    put("interval", interval);
+                }});
                 SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
                         .useInParameterNames(
                                 "IN_MOBILE_NUMBER",
@@ -951,6 +957,56 @@ public class LogService {
                 rs.setErrorCode(1);
                 rs.setErrorMsg(_sessionId + e.getMessage());
             }
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+    public DBObject<Boolean> CheckRepeatActiveRequest(final String _sessionId, final String mobileNumber, final String serviceId, final int interval) {
+        String configName = "CheckRepeatActiveRequest";
+        final Config cf = config.lookup(configName);
+        DBObject<Boolean> rs = new DBObject<Boolean>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("mobileNumber", mobileNumber);
+                put("serviceId", serviceId);
+                put("interval", interval);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_MOBILE_NUMBER",
+                                "IN_SERVICE_ID" ,
+                                "IN_INTERVAL"
+                        ).declareParameters(
+                                new SqlParameter("IN_MOBILE_NUMBER", Types.VARCHAR),
+                                new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
+                                new SqlParameter("IN_INTERVAL", Types.NUMERIC),
+                                new SqlOutParameter("OUT_NO_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_MOBILE_NUMBER", mobileNumber)
+                        .addValue("IN_SERVICE_ID", serviceId)
+                        .addValue("IN_INTERVAL", interval);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if ("DUP".equals(execute.get("OUT_NO_RESULT"))) {
+                    rs.setResult(true);
+                } else {
+                    rs.setResult(false);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
             return rs;
         } else {
             rs.setErrorCode(2);
