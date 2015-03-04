@@ -208,7 +208,7 @@ public class LogService {
                                 new SqlParameter("IN_CALLBACK_PHONE", Types.VARCHAR),
                                 new SqlParameter("IN_SERVICE_ID", Types.VARCHAR),
                                 new SqlParameter("IN_CB_TYPE", Types.VARCHAR),
-                                new SqlParameter("IN_CB_REQUEST_TIME", Types.TIMESTAMP),
+                                new SqlParameter("IN_CB_REQUEST_TIME", Types.TIMESTAMP), 
                                 new SqlParameter("IN_CB_STARTTIME", Types.TIMESTAMP),
                                 new SqlParameter("IN_CB_DELAY", Types.NUMERIC),
                                 new SqlParameter("IN_CB_START_BUFFER", Types.NUMERIC),
