@@ -241,4 +241,10 @@ public class AISService {
         return prepaiddbObject;
     }
 
+    public static DBObject<EP_PARAM> GetEpParamEp3(String _sessionId, String paramName,
+                                                   String paramValue, String networkType, String subnetType) {
+        DBObject<EP_PARAM> prepaiddbObject = configService.GetEpParamEp3(_sessionId, paramName, paramValue, networkType, subnetType);
+        return prepaiddbObject;
+    }
+
 }

@@ -866,5 +866,68 @@ public class ConfigService {
         }
     }
 
+    public DBObject<EP_PARAM> GetEpParamEp3(final String _sessionId, final String paramName,
+                                              final String paramValue, final String networkType, final String subnetType ) {
+        String configName = "GetEpParamEp3";
+        final Config cf = config.lookup(configName);
+        DBObject<EP_PARAM> rs = new DBObject<EP_PARAM>();
+        if (cf != null) {
+            AISLogUtil.printInput(logger, _sessionId, cf, null, new HashMap<String, Object>() {{
+                put("paramName", paramName);
+                put("paramValue", paramValue);
+                put("networkType", networkType);
+                put("subnetType", subnetType);
+            }});
+            try {
+                SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
+                        .useInParameterNames(
+                                "IN_PARAM_NAME",
+                                "IN_PARAM_VALUE",
+                                "IN_NETWORK_TYPE",
+                                "IN_SUBNETWORK_TYPE"
+                        ).declareParameters(
+                                new SqlParameter("IN_PARAM_NAME", Types.VARCHAR),
+                                new SqlParameter("IN_PARAM_VALUE", Types.VARCHAR),
+                                new SqlParameter("IN_NETWORK_TYPE", Types.VARCHAR),
+                                new SqlParameter("IN_SUBNETWORK_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_IDX", Types.NUMERIC),
+                                new SqlOutParameter("OUT_PARAM_NAME", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PARAM_VALUE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_APP", Types.VARCHAR),
+                                new SqlOutParameter("OUT_ENABLE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PARAM_OUT1", Types.VARCHAR),
+                                new SqlOutParameter("OUT_PARAM_OUT2", Types.VARCHAR),
+                                new SqlOutParameter("OUT_NETWORK_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_SUBNETWORK_TYPE", Types.VARCHAR),
+                                new SqlOutParameter("OUT_OR_RESULT", Types.VARCHAR)
+                        )
+                        .withProcedureName(cf.getProcerdure());
+                SqlParameterSource in = new MapSqlParameterSource()
+                        .addValue("IN_PARAM_NAME", paramName).addValue("IN_PARAM_VALUE", paramValue).
+                                addValue("IN_NETWORK_TYPE", networkType).addValue("IN_SUBNETWORK_TYPE", subnetType);
+
+                Map<String, Object> execute = simpleJdbcCall.execute(in);
+                //map to object
+                if (StringUtils.isEmpty((String) execute.get("OUT_OR_RESULT"))) {
+                    EP_PARAM ob = new EP_PARAM();
+                    AISUtils.map2Object(ob, execute);
+                    rs.setResult(ob);
+                }
+            } catch (Exception e) {
+                logger.error(_sessionId, e);
+            }
+            //as not found anything
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        } else {
+            rs.setErrorCode(2);
+            rs.setErrorMsg(_sessionId + " : " + "Can not get config for method: " + configName);
+            logger.error(_sessionId + " : " + "Can not get config for method: " + configName);
+            AISLogUtil.printOutput(logger, _sessionId, cf, null, rs);
+            return rs;
+        }
+    }
+
+
 
 }

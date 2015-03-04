@@ -36,6 +36,7 @@
                         <config method="GetNoCBA" procerdure="SP_GET_NO_CBA" />
                         <config method="GetSMSConf" procerdure="SP_GET_SMS_CONFIG" />
                         <config method="GetLastMenu" procerdure="SP_GET_LAST_MENU" />
+                        <config method="GetEpParamEp3" procerdure="SP_GET_EP_PARAM_EP3" />
                     </configs>
                 </dataSource>
 
