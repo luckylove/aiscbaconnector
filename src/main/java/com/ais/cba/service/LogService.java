@@ -152,6 +152,7 @@ public class LogService {
         if (cf != null) {
             try {
                 AISLogUtil.printLine(logger, _sessionId, "Update to db:" + cf.getProcerdure());
+                AISLogUtil.printInput(logger, _sessionId, cf, null, params);
                 SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
                         .useInParameterNames(
                                 "IN_IDX",
@@ -238,6 +239,7 @@ public class LogService {
                     rs.setResult(bigDecimal.longValue());
                 }
                 AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+                AISLogUtil.printLine(logger, _sessionId, "Updated row: " + rs.getResult());
             } catch (Exception e) {
                 logger.error(_sessionId, e);
                 rs.setErrorCode(1);
@@ -437,6 +439,7 @@ public class LogService {
         if (cf != null) {
             try {
                 AISLogUtil.printLine(logger, _sessionId, "Update to db:" + cf.getProcerdure());
+                AISLogUtil.printInput(logger, _sessionId, cf, null, params);
                 SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
                         .useInParameterNames(
                                 "IN_ACT_ID",
@@ -463,6 +466,7 @@ public class LogService {
                     rs.setResult(bigDecimal.longValue());
                 }
                 AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+                AISLogUtil.printLine(logger, _sessionId, "Updated row: " + rs.getResult());
             } catch (Exception e) {
                 logger.error(_sessionId, e);
                 rs.setErrorCode(1);
@@ -724,6 +728,7 @@ public class LogService {
         if (cf != null) {
             try {
                 AISLogUtil.printLine(logger, _sessionId, "Update to db:" + cf.getProcerdure());
+                AISLogUtil.printInput(logger, _sessionId, cf, null, params);
                 SimpleJdbcCall simpleJdbcCall1 = new SimpleJdbcCall(cf.getJdbcTemplate()).withoutProcedureColumnMetaDataAccess()
                         .useInParameterNames(
                                 "IN_SITEID",
@@ -900,6 +905,7 @@ public class LogService {
                     rs.setResult(bigDecimal.longValue());
                 }
                 AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+                AISLogUtil.printLine(logger, _sessionId, "Updated row: " + rs.getResult());
             } catch (Exception e) {
                 logger.error(_sessionId, e);
                 rs.setErrorCode(1);
@@ -952,6 +958,7 @@ public class LogService {
                     rs.setResult(bigDecimal.longValue());
                 }
                 AISLogUtil.printLine(logger, _sessionId, "Done Update to db: " + cf.getProcerdure());
+                AISLogUtil.printLine(logger, _sessionId, "Updated row: " + rs.getResult());
             } catch (Exception e) {
                 logger.error(_sessionId, e);
                 rs.setErrorCode(1);
